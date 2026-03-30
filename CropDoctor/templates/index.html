@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Doctor 🌱</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌱 Crop Doctor</h1>
+    <p class="subtitle">AI-powered plant disease detection</p>
+
+    <!-- Upload -->
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <br>
+        <button type="submit">🔍 Analyze</button>
+    </form>
+
+    <!-- Image -->
+    {% if image_path %}
+        <img src="{{ image_path }}">
+    {% endif %}
+
+    <!-- Result -->
+    {% if result %}
+        <div class="result-card">
+            <span class="tag">AI Result</span>
+
+            <div class="result-text">
+                {% for line in result.split('\n') %}
+                    <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
